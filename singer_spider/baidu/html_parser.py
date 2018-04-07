@@ -10,7 +10,7 @@ import logging.config
 logging.config.fileConfig('logging.conf')
 logger = logging.getLogger()
 class HtmlParser(object):
-    def parseSinger(self, soup):
+    def parseSingerListPage(self, soup):
         reDatas = []
         ul_tag = soup.find("ul", class_="container")
         a_tags = ul_tag.find_all("a", href=re.compile(r"/artist/"))
@@ -27,11 +27,18 @@ class HtmlParser(object):
                 # print(reData)
         return reDatas
 
-    def parseBaseInfo(self, html_doc):
-        # TODO
-        return None
+    def parserSingerPage(self, soup):
+        reData = {}
+        div_base_info_cont = soup.find('div', class_="base-info-cont")
+        div_hot = div_base_info_cont.find("div", class_="hot")
+        a_baike_artist = div_base_info_cont.find("#baike_artist")
+        a_artistImgLink = div_base_info_cont.find("#artistImgLink")
+        reData['hot'] = div_hot.get_text()
+        reData['baike_url'] = a_baike_artist['href']
+        reData['image_url'] = a_artistImgLink['href']
+        return reData
 
-    def parseBaike(self, soup):
+    def parseSingerBaikePage(self, soup):
         reDatas = []
         div_baseinfo = soup.find("div", class_="basic-info")
         if div_baseinfo is None:
