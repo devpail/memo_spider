@@ -15,8 +15,11 @@ class HtmlDownload(object):
         try:
             # driver = webdriver.PhantomJS()
             chrome_options = Options()
+            #"window-size=1024,768", "--no-sandbox"
             chrome_options.add_argument('--headless')
             chrome_options.add_argument('--disable-gpu')
+            chrome_options.add_argument("window-size=1024,768")
+            chrome_options.add_argument("--no-sandbox")
             driver = webdriver.Chrome(chrome_options=chrome_options)
             driver.get(root_url)
             soup = BeautifulSoup(driver.page_source, 'html.parser')
