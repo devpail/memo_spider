@@ -55,6 +55,8 @@ class HtmlParser(object):
     def parseSingerBaikePage(self, soup):
         relations = []
         reDatas = []
+        if soup is None:
+            return None, None
         div_baseinfo = soup.find("div", class_="basic-info")
         if div_baseinfo is None:
             reDatas = None

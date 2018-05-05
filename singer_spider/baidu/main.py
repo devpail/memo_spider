@@ -15,8 +15,7 @@ logger = logging.getLogger()
 
 
 class SpiderMain(object):
-    startTime = time.time()
-    logger.info("开始时间戳：" + str(startTime))
+
 
     # 初始化方法
     def __init__(self):
@@ -29,6 +28,8 @@ class SpiderMain(object):
 
     # 抓取百度音乐歌手名单页面
     def crawlSingerListPage(self, root_url):
+        startTime = time.time()
+        logger.info("百度音乐歌手列表页面抓取开始时间戳：" + str(startTime))
         # 下载url页面html
         soup = self.downloader.download(root_url)
         # print(htmlCode.decode('utf-8'))
@@ -36,9 +37,14 @@ class SpiderMain(object):
         datas = self.parser.parseSingerListPage(soup)
         # 存储到数据库中
         self.dbHelper.saveSinger(datas)
+        endTime = time.time()
+        logger.info("百度音乐歌手列表页面抓取结束时间戳：" + str(endTime))
+        logger.info("用时：" + (endTime-startTime)/1000)
 
     # 抓取百度音乐歌手个人页面的百度百科URL
     def crawlSingerPage(self):
+        startTime = time.time()
+        logger.info("百度音乐歌手详情页面抓取开始时间戳：" + str(startTime))
         # 从数据库中取出所有的歌手
         singers = self.dbHelper.get10Singer()
         while singers != None:
@@ -57,17 +63,25 @@ class SpiderMain(object):
                 self.dbHelper.saveSingerInfo(singer[0], data)
             singers = self.dbHelper.get10Singer()
         else:
-            logger.info("歌手信息页面已全部抓取完毕~")
+            logger.info("百度音乐歌手信息页面已全部抓取完毕~\n\n\n")
+        endTime = time.time()
+        logger.info("百度音乐歌手详情页面抓取结束时间戳：" + str(endTime))
+        logger.info("用时：" + (endTime - startTime) / 1000)
 
     # 抓取歌手百度百科页面信息
     def crawlBaike(self):
+        startTime = time.time()
+        logger.info("百度音乐歌手百科页面抓取开始时间戳：" + str(startTime))
         # 从数据库中取出所有的名字信息
         singers = self.dbHelper.get10SingerInfo()
         while singers != None:
             self.crawlSingerBaikePage(singers)
             singers = self.dbHelper.get10SingerInfo()
         else:
-            logger.info("url已全部抓取完毕~")
+            logger.info("百度百科页面已全部抓取完毕~")
+        endTime = time.time()
+        logger.info("百度音乐歌手百科页面抓取结束时间戳：" + str(endTime))
+        logger.info("用时：" + (endTime - startTime) / 1000)
 
     # 抓取歌手百度百科页面
     def crawlSingerBaikePage(self, singers):
@@ -98,6 +112,6 @@ if __name__ == "__main__":
     # 抓取百度音乐歌手名单
     #obj_spider.crawlSingerListPage(root_url)
     # 抓取百度音乐歌手页面
-    obj_spider.crawlSingerPage()
+    #obj_spider.crawlSingerPage()
     # 抓取歌手百度百科页面
     obj_spider.crawlBaike()

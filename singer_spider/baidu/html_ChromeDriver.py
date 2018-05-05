@@ -23,6 +23,7 @@ class HtmlDownload(object):
             driver = webdriver.Chrome(chrome_options=chrome_options)
             driver.get(root_url)
             soup = BeautifulSoup(driver.page_source, 'html.parser')
+            driver.close()
             return soup
         except Exception as err:
             logger.info(err.__str__())
