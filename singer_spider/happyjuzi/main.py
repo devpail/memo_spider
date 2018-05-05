@@ -9,7 +9,7 @@ import html_parser
 import const
 
 logging.config.fileConfig('logging.conf')
-logger = logging.getLogger()
+logger = logging.getLogger('main')
 
 # 爬虫总调main函数
 class SpiderMain(object):

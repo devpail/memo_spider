@@ -5,7 +5,7 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from selenium.webdriver.chrome.options import Options
 import logging
-logger = logging.getLogger()
+logger = logging.getLogger('main')
 
 class HtmlDownload(object):
     def download(self, root_url):

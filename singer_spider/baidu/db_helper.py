@@ -5,7 +5,7 @@ import pymysql as pymysql
 import logging.config
 
 logging.config.fileConfig('logging.conf')
-logger = logging.getLogger()
+logger = logging.getLogger('main')
 class DbHelper(object):
     config = {
         'host': 'localhost',

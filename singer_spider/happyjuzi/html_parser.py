@@ -5,7 +5,7 @@ import uuid
 import time
 from bs4 import BeautifulSoup
 import logging
-logger = logging.getLogger()
+logger = logging.getLogger('main')
 
 class HtmlParser(object):
     def getPageURLs(self, soup):

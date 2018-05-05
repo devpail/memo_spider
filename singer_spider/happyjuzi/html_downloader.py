@@ -2,7 +2,7 @@
 
 from urllib import request
 import logging
-logger = logging.getLogger()
+logger = logging.getLogger('main')
 
 class HtmlDownload(object):
     def download(self, root_url):

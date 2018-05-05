@@ -4,7 +4,7 @@ import pymysql as pymysql
 import const
 
 import logging
-logger = logging.getLogger()
+logger = logging.getLogger('main')
 
 class DbHelper(object):
 

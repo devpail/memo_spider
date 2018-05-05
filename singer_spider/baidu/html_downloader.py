@@ -5,7 +5,7 @@ import logging
 import logging.config
 
 logging.config.fileConfig('logging.conf')
-logger = logging.getLogger()
+logger = logging.getLogger('main')
 class HtmlDownload(object):
     def download(self, root_url):
         if root_url is None:
