@@ -84,12 +84,13 @@ class SpiderMain(object):
         logger.info("用时：" + (endTime - startTime) / 1000)
 
     # 抓取歌手百度百科页面
-    def crawlSingerBaikePage(self, singers):
+    def crawlSingerBaikePage(self, singers): #singer_id,baike_url,id
         for singer in singers:
             if singer[1] is None:
                 continue
             if self.dbHelper.getSingerBaike(singer[1]) != 0:
                 logger.info(singer[1] + ' 的百科信息已经被抓取~')
+                self.dbHelper.updateSingerInfoStatus(singer[2], 1)
                 continue
             logger.info('开始抓取 ' + singer[1] + ' 的百科信息~')
             # 下载百度百科页面
@@ -98,6 +99,7 @@ class SpiderMain(object):
             # 抓取百科页面信息
             itemDatas, relations = self.parser.parseSingerBaikePage(soup)
             if itemDatas is None and relations is None:
+                self.dbHelper.updateSingerInfoStatus(singer[2], 2)
                 logger.info(singer[1] + " 的百科页面-没有个人详情数据！")
             else:
                 # 存储抓取的数据

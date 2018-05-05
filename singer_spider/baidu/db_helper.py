@@ -182,6 +182,7 @@ class DbHelper(object):
             with connection.cursor() as cursor:
                 sql = "update bd_singer_info set status = %s where id = %s"
                 logger.info("更新id是" + str(singerInfoId) + "的页面url抓取状态为" + str(status))
+                logger.info("sql:" + sql)
                 cursor.execute(sql, (status, str(singerInfoId)))
                 connection.commit()
                 logger.info(singerInfoId + "--抓取状态更新~")
