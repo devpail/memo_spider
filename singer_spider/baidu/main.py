@@ -39,7 +39,7 @@ class SpiderMain(object):
         self.dbHelper.saveSinger(datas)
         endTime = time.time()
         logger.info("百度音乐歌手列表页面抓取结束时间戳：" + str(endTime))
-        logger.info("用时：" + (endTime-startTime)/1000)
+        logger.info("用时：" + str((endTime - startTime) / 1000))
 
     # 抓取百度音乐歌手个人页面的百度百科URL
     def crawlSingerPage(self):
@@ -66,7 +66,7 @@ class SpiderMain(object):
             logger.info("百度音乐歌手信息页面已全部抓取完毕~\n\n\n")
         endTime = time.time()
         logger.info("百度音乐歌手详情页面抓取结束时间戳：" + str(endTime))
-        logger.info("用时：" + (endTime - startTime) / 1000)
+        logger.info("用时：" + str((endTime - startTime) / 1000))
 
     # 抓取歌手百度百科页面信息
     def crawlBaike(self):
@@ -81,7 +81,7 @@ class SpiderMain(object):
             logger.info("百度百科页面已全部抓取完毕~")
         endTime = time.time()
         logger.info("百度音乐歌手百科页面抓取结束时间戳：" + str(endTime))
-        logger.info("用时：" + (endTime - startTime) / 1000)
+        logger.info("用时：" + str((endTime - startTime) / 1000))
 
     # 抓取歌手百度百科页面
     def crawlSingerBaikePage(self, singers): #singer_id,baike_url,id
@@ -112,8 +112,8 @@ if __name__ == "__main__":
     root_url = "http://music.baidu.com/artist"
     obj_spider = SpiderMain()
     # 抓取百度音乐歌手名单
-    #obj_spider.crawlSingerListPage(root_url)
+    obj_spider.crawlSingerListPage(root_url)
     # 抓取百度音乐歌手页面
-    #obj_spider.crawlSingerPage()
+    obj_spider.crawlSingerPage()
     # 抓取歌手百度百科页面
     obj_spider.crawlBaike()
