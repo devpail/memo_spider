@@ -112,7 +112,7 @@ if __name__ == "__main__":
     root_url = "http://music.baidu.com/artist"
     obj_spider = SpiderMain()
     # 抓取百度音乐歌手名单
-    obj_spider.crawlSingerListPage(root_url)
+    #obj_spider.crawlSingerListPage(root_url)
     # 抓取百度音乐歌手页面
     obj_spider.crawlSingerPage()
     # 抓取歌手百度百科页面
